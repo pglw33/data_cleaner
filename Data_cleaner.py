@@ -28,7 +28,7 @@ def convert_df(df):
 
 def pipeline(df,dep_str):
     df_final=df[["Dénomination de la société", "Lien-href", 'Activité', "SIREN", "APE", "Activité principale", "Adresses", "Nature juridique", "Salariés", "Date de création", "Description"]].copy()
-    df_final["Adresses"]=df_final["Adresses"].apply(supprimer_retour_ligne)
+    df_final["Adresses"]=df_final["Adresses"].astype(str).apply(supprimer_retour_ligne)
     df_final['Adresse'], df_final['Code postal'], df_final['Ville'] = zip(*df_final['Adresses'].apply(decouper_adresse))
     df_final=df_final.rename(columns={"Dénomination de la société": "Nom de l'entreprise", "Lien-href": "Lien Data.Gouv"})
     df_final["Code postal"]=df_final["Code postal"].fillna(0).astype(int)

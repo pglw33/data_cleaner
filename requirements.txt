@@ -1,2 +1,2 @@
 pandas == 2.2.0
-re == 3.12
+regex
